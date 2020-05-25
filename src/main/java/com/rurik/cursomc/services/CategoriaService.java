@@ -1,17 +1,17 @@
 package com.rurik.cursomc.services;
 
 import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
 import com.rurik.cursomc.domain.Categoria;
-import com.rurik.cursomc.repositories.CategoriaRepossitory;
+import com.rurik.cursomc.repositories.CategoriaRepository;
 
 @Service
 public class CategoriaService {
 	
 	@Autowired
-	private CategoriaRepossitory repo;
+	private CategoriaRepository repo;
 
 	public Categoria find(Integer id){
 		
