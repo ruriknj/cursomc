@@ -13,6 +13,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.rurik.cursomc.domain.enums.TipoCliente;
 
 @Entity
@@ -27,6 +29,7 @@ public class Cliente implements Serializable {
 	private String CpfOuCnpj;
 	private Integer tipo;
 
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	List<Endereco> enderecos = new ArrayList<>();
 
@@ -43,7 +46,7 @@ public class Cliente implements Serializable {
 		this.id = id;
 		this.nome = nome;
 		this.email = email;
-		CpfOuCnpj = cpfOuCnpj;
+		this.CpfOuCnpj = cpfOuCnpj;
 		this.tipo = tipo.getCod();
 	}
 
@@ -76,15 +79,7 @@ public class Cliente implements Serializable {
 	}
 
 	public void setCpfOuCnpj(String cpfOuCnpj) {
-		CpfOuCnpj = cpfOuCnpj;
-	}
-
-	public List<Endereco> getEnderecos() {
-		return enderecos;
-	}
-
-	public void setEnderecos(List<Endereco> enderecos) {
-		this.enderecos = enderecos;
+		this.CpfOuCnpj = cpfOuCnpj;
 	}
 
 	public TipoCliente getTipo() {
@@ -93,6 +88,14 @@ public class Cliente implements Serializable {
 
 	public void setTipo(TipoCliente tipo) {
 		this.tipo = tipo.getCod();
+	}
+
+	public List<Endereco> getEnderecos() {
+		return enderecos;
+	}
+
+	public void setEnderecos(List<Endereco> enderecos) {
+		this.enderecos = enderecos;
 	}
 
 	public Set<String> getTelefones() {
